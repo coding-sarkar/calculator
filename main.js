@@ -8,6 +8,7 @@ const numbers = Array.from(document.querySelectorAll(".number"));
 const operators = Array.from(document.querySelectorAll(".operator"));
 const equalBtn = document.querySelector(".equal");
 const decimalBtn = document.querySelector(".decimal");
+const delBtn = document.querySelector(".del")
 
 // event listener declarations
 numbers.forEach(number => number.addEventListener("click", getNumber));
@@ -15,6 +16,7 @@ clearBtn.addEventListener("click", clearScreen);
 operators.forEach(operator => operator.addEventListener("click", getOperator));
 equalBtn.addEventListener("click", operate);
 decimalBtn.addEventListener("click", addDecimal);
+delBtn.addEventListener("click", deleteLastDigit);
 
 // function declarations
 function getNumber(e) {
@@ -103,6 +105,16 @@ function addDecimal() {
     } else {
         if (secondNum.includes(".")) return;
         secondNum += ".";
+        display.textContent = secondNum;
+    }
+}
+
+function deleteLastDigit() {
+    if (operator.length === 0) {
+        firstNum = firstNum.slice(0, firstNum.length - 1);
+        display.textContent = firstNum;
+    } else {
+        secondNum = secondNum.slice(0, secondNum.length - 1);
         display.textContent = secondNum;
     }
 }
