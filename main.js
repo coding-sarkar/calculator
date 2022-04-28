@@ -79,6 +79,13 @@ function multiply() {
 }
 
 function divide() {
+    if (parseInt(secondNum) === 0) {
+        display.textContent = "lmao";
+        firstNum = "";
+        secondNum = "";
+        operator = "";
+        return;
+    }
     firstNum = `${parseInt(firstNum) / parseInt(secondNum)}`;
     secondNum = "";
     display.textContent = firstNum;
