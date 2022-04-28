@@ -24,8 +24,7 @@ function getNumber(e) {
         secondNum += e.target.textContent;
         display.textContent = secondNum;
     }
-    console.log(firstNum);
-    console.log(secondNum);
+    
 }
 
 function clearScreen() {
@@ -36,11 +35,17 @@ function clearScreen() {
 }
 
 function getOperator(e) {
+    if (operator.length === 1) {
+        operate();
+    }
     operator = e.target.textContent;
-    console.log(operator);
+    
 }
 
 function operate() {
+    console.log(`FirstNum = ${firstNum}`);
+    console.log(`SecondNum = ${secondNum}`);
+    console.log(`Operator = ${operator}`);
     if (firstNum.length === 0 || secondNum.length === 0 || operator.length === 0) {
         return;
     }
@@ -56,17 +61,25 @@ function operate() {
 }
 
 function add() {
-    display.textContent = `${parseInt(firstNum) + parseInt(secondNum)}`;
+    firstNum = `${parseInt(firstNum) + parseInt(secondNum)}`;
+    secondNum = "";
+    display.textContent = firstNum;
 }
 
 function subtract() {
-    display.textContent = `${parseInt(firstNum) - parseInt(secondNum)}`;
+    firstNum = `${parseInt(firstNum) - parseInt(secondNum)}`;
+    secondNum = "";
+    display.textContent = firstNum;
 }
 
 function multiply() {
-    display.textContent = `${parseInt(firstNum) * parseInt(secondNum)}`;
+    firstNum = `${parseInt(firstNum) * parseInt(secondNum)}`;
+    secondNum = "";
+    display.textContent = firstNum;
 }
 
 function divide() {
-    display.textContent = `${parseInt(firstNum) / parseInt(secondNum)}`;
+    firstNum = `${parseInt(firstNum) / parseInt(secondNum)}`;
+    secondNum = "";
+    display.textContent = firstNum;
 }
