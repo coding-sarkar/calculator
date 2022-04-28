@@ -7,12 +7,14 @@ const clearBtn = document.querySelector(".clear");
 const numbers = Array.from(document.querySelectorAll(".number"));
 const operators = Array.from(document.querySelectorAll(".operator"));
 const equalBtn = document.querySelector(".equal");
+const decimalBtn = document.querySelector(".decimal");
 
 // event listener declarations
 numbers.forEach(number => number.addEventListener("click", getNumber));
 clearBtn.addEventListener("click", clearScreen);
 operators.forEach(operator => operator.addEventListener("click", getOperator));
 equalBtn.addEventListener("click", operate);
+decimalBtn.addEventListener("click", addDecimal);
 
 // function declarations
 function getNumber(e) {
@@ -28,7 +30,7 @@ function getNumber(e) {
 }
 
 function clearScreen() {
-    display.textContent = '';
+    display.textContent = '0';
     firstNum = '';
     secondNum = '';
     operator = '';
@@ -61,30 +63,46 @@ function operate() {
 }
 
 function add() {
-    firstNum = `${parseInt(firstNum) + parseInt(secondNum)}`;
+    firstNum = `${parseFloat(firstNum) + parseFloat(secondNum)}`;
     secondNum = "";
+    operator = "";
     display.textContent = firstNum;
 }
 
 function subtract() {
-    firstNum = `${parseInt(firstNum) - parseInt(secondNum)}`;
+    firstNum = `${parseFloat(firstNum) - parseFloat(secondNum)}`;
     secondNum = "";
+    operator = "";
     display.textContent = firstNum;
 }
 
 function multiply() {
-    firstNum = `${parseInt(firstNum) * parseInt(secondNum)}`;
+    firstNum = `${parseFloat(firstNum) * parseFloat(secondNum)}`;
     secondNum = "";
+    operator = "";
     display.textContent = firstNum;
 }
 
 function divide() {
-    if (parseInt(secondNum) === 0) {
+    if (parseFloat(secondNum) === 0) {
         display.textContent = "Can't Divide by 0! Try Different Number";
         secondNum = "";
         return;
     }
-    firstNum = `${parseInt(firstNum) / parseInt(secondNum)}`;
+    firstNum = `${(parseFloat(firstNum) / parseFloat(secondNum)).toFixed(7)}`;
     secondNum = "";
+    operator = "";
     display.textContent = firstNum;
+}
+
+function addDecimal() {
+    if (operator.length === 0) {
+        if (firstNum.includes(".")) return;
+        firstNum += ".";
+        display.textContent = firstNum;
+    } else {
+        if (secondNum.includes(".")) return;
+        secondNum += ".";
+        display.textContent = secondNum;
+    }
 }
