@@ -80,10 +80,8 @@ function multiply() {
 
 function divide() {
     if (parseInt(secondNum) === 0) {
-        display.textContent = "lmao";
-        firstNum = "";
+        display.textContent = "Can't Divide by 0! Try Different Number";
         secondNum = "";
-        operator = "";
         return;
     }
     firstNum = `${parseInt(firstNum) / parseInt(secondNum)}`;
