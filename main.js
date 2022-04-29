@@ -8,7 +8,7 @@ const numbers = Array.from(document.querySelectorAll(".number"));
 const operators = Array.from(document.querySelectorAll(".operator"));
 const equalBtn = document.querySelector(".equal");
 const decimalBtn = document.querySelector(".decimal");
-const delBtn = document.querySelector(".del")
+const delBtn = document.querySelector(".del");
 
 // event listener declarations
 numbers.forEach(number => number.addEventListener("click", getNumber));
@@ -60,41 +60,35 @@ function operate() {
     } else if (operator === "*"){
         multiply();
     } else if (operator === "/") {
+        if (parseFloat(secondNum) === 0) {
+            alert("Can't Divide by 0! Try Different Number");
+            secondNum = "";
+            return;
+        }
         divide();
     }
+    secondNum = "";
+    operator = "";
+    display.textContent = firstNum;
 }
 
 function add() {
     firstNum = `${parseFloat(firstNum) + parseFloat(secondNum)}`;
-    secondNum = "";
-    operator = "";
-    display.textContent = firstNum;
 }
 
 function subtract() {
     firstNum = `${parseFloat(firstNum) - parseFloat(secondNum)}`;
-    secondNum = "";
-    operator = "";
-    display.textContent = firstNum;
 }
 
 function multiply() {
     firstNum = `${parseFloat(firstNum) * parseFloat(secondNum)}`;
-    secondNum = "";
-    operator = "";
-    display.textContent = firstNum;
 }
 
 function divide() {
-    if (parseFloat(secondNum) === 0) {
-        display.textContent = "Can't Divide by 0! Try Different Number";
-        secondNum = "";
-        return;
+    firstNum = `${parseFloat(firstNum) / parseFloat(secondNum)}`;
+    if (firstNum.includes(".")) {
+        firstNum = `${(parseFloat(firstNum) / parseFloat(secondNum)).toFixed(7)}`;
     }
-    firstNum = `${(parseFloat(firstNum) / parseFloat(secondNum)).toFixed(7)}`;
-    secondNum = "";
-    operator = "";
-    display.textContent = firstNum;
 }
 
 function addDecimal() {
